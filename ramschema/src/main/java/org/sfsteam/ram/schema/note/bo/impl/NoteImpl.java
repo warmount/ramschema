@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service("noteBo")
 public class NoteImpl implements NoteBo {
-	
+
 	@Autowired
 	NoteDao noteDao;
 

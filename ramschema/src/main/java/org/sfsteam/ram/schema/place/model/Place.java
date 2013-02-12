@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,16 +18,20 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import org.sfsteam.ram.schema.area.model.CellArea;
+import org.sfsteam.ram.schema.area.model.GPSArea;
+import org.sfsteam.ram.schema.area.model.WFArea;
 import org.sfsteam.ram.schema.areatype.model.AreaType;
-import org.sfsteam.ram.schema.cellarea.model.CellArea;
-import org.sfsteam.ram.schema.gpsarea.model.GPSArea;
-import org.sfsteam.ram.schema.wfarea.model.WFArea;
 import org.sfsteam.ram.schema.note.model.Note;
 
 @Entity
 @Table(name = "t_place", catalog = "ramschema", uniqueConstraints = { @UniqueConstraint(columnNames = "place_id") })
 public class Place implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7355956720133594757L;
 	private Long id;
 	private String name;
 	private String text;
@@ -118,7 +121,7 @@ public class Place implements Serializable {
 		this.place2type = place2type;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "note")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "note2place")
 	public Set<Note> getNotes() {
 		return notes;
 	}

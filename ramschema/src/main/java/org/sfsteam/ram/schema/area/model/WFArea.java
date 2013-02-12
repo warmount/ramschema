@@ -1,4 +1,4 @@
-package org.sfsteam.ram.schema.areatype.model;
+package org.sfsteam.ram.schema.area.model;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -16,19 +16,20 @@ import javax.persistence.UniqueConstraint;
 import org.sfsteam.ram.schema.place.model.Place;
 
 @Entity
-@Table(name = "t_areatype", catalog = "ramschema", uniqueConstraints = { @UniqueConstraint(columnNames = "areatype_id") })
-public class AreaType implements Serializable {
+@Table(name = "t_wfarea", catalog = "ramschema", uniqueConstraints = { @UniqueConstraint(columnNames = "wfarea_id") })
+public class WFArea implements Serializable{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7531504984944288615L;
+	private static final long serialVersionUID = 8143572812327948249L;
 	private Long id;
-	private String name;
+	private String ssid;
+	private String mac;
 	private Set<Place> places;
 	
 	@Id
-	@Column(name = "areatype_id", unique = true, nullable = false)
+	@Column(name = "wfarea_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
@@ -36,16 +37,22 @@ public class AreaType implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	@Column(name = "areatype_name", nullable = false, length = 50)
-	public String getName() {
-		return name;
+	@Column(name = "wfarea_ssid", nullable = false, length = 50)
+	public String getSsid() {
+		return ssid;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setSsid(String ssid) {
+		this.ssid = ssid;
+	}
+	@Column(name = "wfarea_mac", nullable = false, length = 100)
+	public String getMac() {
+		return mac;
+	}
+	public void setMac(String mac) {
+		this.mac = mac;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "place2type")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "place2wf")
 	public Set<Place> getPlaces() {
 		return places;
 	}

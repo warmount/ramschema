@@ -22,6 +22,10 @@ import org.sfsteam.ram.schema.timer.model.Timer;
 @Table(name = "t_note", catalog = "ramschema", uniqueConstraints = { @UniqueConstraint(columnNames = "note_id") })
 public class Note implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1603966355581363675L;
 	private Long id;
 	private String name;
 	private String text;

@@ -1,23 +1,26 @@
 package org.sfsteam.ram.schema.timer.dao.impl;
 
+import org.hibernate.SessionFactory;
 import org.sfsteam.ram.schema.timer.dao.TimerDao;
 import org.sfsteam.ram.schema.timer.model.Timer;
-import org.sfsteam.ram.schema.util.CustomHibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("timerDao")
-public class TimerDaoImpl extends CustomHibernateDaoSupport implements TimerDao {
+public class TimerDaoImpl implements TimerDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void save(Timer timer) {
-		getHibernateTemplate().save(timer);
+		sessionFactory.getCurrentSession().save(timer);
 	}
 
 	public void update(Timer timer) {
-		getHibernateTemplate().update(timer);
+		sessionFactory.getCurrentSession().update(timer);
 	}
 
 	public void delete(Timer timer) {
-		getHibernateTemplate().delete(timer);
+		sessionFactory.getCurrentSession().delete(timer);
 	}
 
 }

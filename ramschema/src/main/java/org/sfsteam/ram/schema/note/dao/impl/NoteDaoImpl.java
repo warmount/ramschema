@@ -1,23 +1,26 @@
 package org.sfsteam.ram.schema.note.dao.impl;
 
+import org.hibernate.SessionFactory;
 import org.sfsteam.ram.schema.note.dao.NoteDao;
 import org.sfsteam.ram.schema.note.model.Note;
-import org.sfsteam.ram.schema.util.CustomHibernateDaoSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("noteDao")
-public class NoteDaoImpl extends CustomHibernateDaoSupport implements NoteDao {
+public class NoteDaoImpl implements NoteDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void save(Note note) {
-		getHibernateTemplate().save(note);
+		sessionFactory.getCurrentSession().save(note);
 	}
 
 	public void update(Note note) {
-		getHibernateTemplate().update(note);
+		sessionFactory.getCurrentSession().update(note);
 	}
 
 	public void delete(Note note) {
-		getHibernateTemplate().delete(note);
+		sessionFactory.getCurrentSession().delete(note);
 	}
 
 }
